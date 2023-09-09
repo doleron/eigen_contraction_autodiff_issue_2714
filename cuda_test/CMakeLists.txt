@@ -10,10 +10,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-include_directories(/home/doleron/book-workspace/pbp-deep-learning-in-modern-cpp/third-part/eigen/src)
+include_directories(/home/doleron/book-workspace/eigen-doleron/)
 
 file(GLOB cpu_sources "${PROJECT_SOURCE_DIR}/src/*.cc")
 file(GLOB cuda_sources "")
 
 add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cc ${PROJECT_SOURCE_DIR}/src/functions.cu)
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES})
+
+# export CUDA_HOME=/usr/local/cuda
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64
+# export PATH=$PATH:$CUDA_HOME/bin
+# cmake -DCMAKE_CUDA_ARCHITECTURES=86 ..
